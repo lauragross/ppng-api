@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Análise da PPNG</title>
+    <style>
+        /* Estilo geral da página */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #c5c5c5ef; /* Cor de fundo */
+            margin: 0;
+            padding: 0;
+            color: #333; /* Cor do texto */
+        }
+
+        /* Título principal */
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 40px;
+        }
+
+        /* Título da seção */
+        h2 {
+            color: #333;
+            margin-top: 30px;
+        }
+
+        /* Estilo do conteúdo da tabela */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: right;
+        }
+
+        th {
+            background-color: #bbb; /* Cor de fundo cinza mais escuro */
+        }
+
+        td:first-child, th:first-child {
+            text-align: left;
+        }
+
+        /* Contêiner para centralizar o conteúdo */
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Botão de voltar */
+        .btn-voltar {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 1em;
+            margin-top: 20px;
+            background-color: #696969;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .btn-voltar:hover {
+            background-color: #797979;
+        }
+
+        /* Rodapé */
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            font-size: 0.9em;
+            background-color: #ce8525;
+            color: white;
+            border-radius: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Análise da PPNG</h1>
+        <p><strong>Data Base:</strong> {{ data_base }}</p>
+
+        <h2>Por Grupo</h2>
+        <table>
+            <tr>
+                <th>Grupo</th>
+                <th>PPNG CE</th>
+                <th>PPNG CA</th>
+                <th>Variação Cambial</th>
+            </tr>
+            {% for linha in resumo_grupo %}
+            <tr>
+                <td>{{ linha.grupo }}</td>
+                <td>{{ "{:,.2f}".format(linha.ppngRessCE) }}</td>
+                <td>{{ "{:,.2f}".format(linha.ppngRessCA) }}</td>
+                <td>{{ "{:,.2f}".format(linha.varCambPPNG) }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h2>Por Moeda</h2>
+        <table>
+            <tr>
+                <th>Moeda</th>
+                <th>PPNG CE</th>
+                <th>PPNG CA</th>
+                <th>Variação Cambial</th>
+            </tr>
+            {% for linha in resumo_moeda %}
+            <tr>
+                <td>{{ linha.moeda }}</td>
+                <td>{{ "{:,.2f}".format(linha.ppngRessCE) }}</td>
+                <td>{{ "{:,.2f}".format(linha.ppngRessCA) }}</td>
+                <td>{{ "{:,.2f}".format(linha.varCambPPNG) }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <!-- Botão de voltar para a tela inicial -->
+        <a href="javascript:history.back()" class="btn-voltar">Voltar</a>
+    </div>
+
+    <footer>
+        <p>© 2025 Cálculo de Provisões Técnicas</p>
+    </footer>
+</body>
+</html>
