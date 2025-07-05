@@ -91,8 +91,12 @@ def rota_calcular_ppng():
         atualizar_progresso(0) # Início
 
         # 1. Lê a data base salva
-        data_base = ler_data_base()
+        import database
+        database.importar_contratos_parquet()
         atualizar_progresso(10)
+        
+        data_base = ler_data_base()
+        atualizar_progresso(15)
 
         # 2. Carrega a base de dados original
         df = carregar_db("ppng-api.db", "base_emi_ress")

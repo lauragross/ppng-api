@@ -2,6 +2,7 @@ import sqlite3
 import pandas as pd
 from datetime import datetime, date
 
+
 def carregar_db(db_path: str, tabela: str) -> pd.DataFrame:
     """
     Lê uma tabela de um banco de dados SQLite e retorna como DataFrame.
